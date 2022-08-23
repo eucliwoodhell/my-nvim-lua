@@ -12,7 +12,6 @@ return require('packer').startup({
         function (use)
                 -- buffer bar head
                 use 'ap/vim-buftabline'
-
                 -- nerdtree
                 use { 'preservim/nerdtree' }
                 -- coc
@@ -76,11 +75,3 @@ return require('packer').startup({
                 }
         }
 })
-
-
-
--- local Plug = vim.fn['plug#']
--- vim.call('plug#begin', '~/.config/nvim/plugged')
-
-
--- vim.call('plug#end')

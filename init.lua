@@ -1,5 +1,5 @@
 require("_plugins")
-require("_option")
+require("_keymap")
 require("_coc")
 require("_color")
 require("_nerdtree")

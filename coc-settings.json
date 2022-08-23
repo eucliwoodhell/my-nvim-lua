@@ -1,4 +1,6 @@
 {
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
@@ -6,7 +8,6 @@
     "typescriptreact",
     "rust"
   ],
-  "tsserver.formatOnType": true,
   "html-css-support.enabledLanguages": [
         "html",
         "vue",
@@ -15,13 +16,12 @@
         "typescriptreact",
         "javascriptreact"
   ],
-  "coc.preferences.formatOnType": true,
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
-  "rust-analyzer.server.path": "/usr/local/bin/rust-analyzer",
   "coc.preferences.rootPatterns": [".git","env", ".env"],
   "python.venvFolders":["envs",".pyenv",".direnv","env"],
   "python.jediEnabled":false,
+  "rust-analyzer.server.path": "/usr/local/bin/rust-analyzer",
   "list.maxPreviewHeight": 5,
   "list.height": 5,
   "cssmodules.camelCase": true,
