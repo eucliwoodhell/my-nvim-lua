@@ -1,0 +1,34 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "rust"
+  ],
+  "tsserver.formatOnType": true,
+  "html-css-support.enabledLanguages": [
+        "html",
+        "vue",
+        "blade",
+        "htmldjango",
+        "typescriptreact",
+        "javascriptreact"
+  ],
+  "coc.preferences.formatOnType": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "rust-analyzer.server.path": "/usr/local/bin/rust-analyzer",
+  "coc.preferences.rootPatterns": [".git","env", ".env"],
+  "python.venvFolders":["envs",".pyenv",".direnv","env"],
+  "python.jediEnabled":false,
+  "list.maxPreviewHeight": 5,
+  "list.height": 5,
+  "cssmodules.camelCase": true,
+  "eslint.object-curly-newline": ["error", {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+   }]
+}
