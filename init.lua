@@ -1,10 +1,15 @@
 require("_plugins")
 require("_keymap")
-require("_coc")
 require("_color")
-require("_nerdtree")
-require("_telescope")
-require("_lspsaga")
-require("_cursorline")
-require("_treesitter")
-require("_comment")
+
+-- Config
+require("config._packer")
+
+-- Pluggins
+require("plugins._coc")
+require("plugins._nerdtree")
+require("plugins._telescope")
+require("plugins._lspsaga")
+require("plugins._cursorline")
+require("plugins._treesitter")
+require("plugins._comment")

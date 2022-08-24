@@ -1,5 +1,6 @@
-local lspsaga = require 'lspsaga'
-lspsaga.setup {
+local keymap = vim.api.nvim_set_keymap
+
+require('lspsaga').setup {
         debug = false,
         use_saga_diagnostic_sign = true,
         -- diagnostic sign
@@ -31,6 +32,6 @@ lspsaga.setup {
         diagnostic_prefix_format = "%d. "
 }
 
-vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
-vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
-vim.keymap.set("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
+keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
+keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })

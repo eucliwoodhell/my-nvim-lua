@@ -10,13 +10,16 @@ end
 
 return require('packer').startup({
         function (use)
+                -- Packer can manage itself
+                use 'wbthomason/packer.nvim'
                 -- buffer bar head
                 use 'ap/vim-buftabline'
+
                 -- nerdtree
                 use { 'preservim/nerdtree' }
                 -- coc
                 -- Plug 'neoclide/coc.nvim'
-                use { 'neoclide/coc.nvim', {['branch'] = 'release'} }
+                use { 'neoclide/coc.nvim', branch = 'release' }
                 -- Completion framework
                 use { 'hrsh7th/nvim-cmp' }
                 -- SP completion source for nvim-cmp
@@ -43,7 +46,7 @@ return require('packer').startup({
                 use { 'kyazdani42/nvim-web-devicons' }
                 use { 'folke/trouble.nvim' }
                 -- decoration syntax
-                use { 'nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'} }
+                use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
                 -- theme
                 use { 'jacoborus/tender.vim' }
                 use { 'vim-airline/vim-airline' }
@@ -58,7 +61,6 @@ return require('packer').startup({
                 -- css
                 use { 'ap/vim-css-color' }
                 use { 'jvanja/vim-bootstrap4-snippets' }
-
 
                 if packer_bootstrap then
                         require('packer').sync()
