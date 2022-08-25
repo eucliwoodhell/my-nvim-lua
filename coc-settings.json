@@ -8,14 +8,6 @@
     "typescriptreact",
     "rust"
   ],
-  "html-css-support.enabledLanguages": [
-        "html",
-        "vue",
-        "blade",
-        "htmldjango",
-        "typescriptreact",
-        "javascriptreact"
-  ],
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "coc.preferences.rootPatterns": [".git","env", ".env"],

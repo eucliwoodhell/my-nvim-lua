@@ -12,19 +12,19 @@ o.updatetime = 300
 -- extensions
 g["coc_global_extensions"] = {
     "coc-css",
+    "coc-json",
     "coc-cssmodules",
     "coc-eslint",
-    "coc-html-css-support",
-    "coc-htmlhint",
-    "coc-lists",
-    "coc-lua",
     "coc-prettier",
+    "coc-lists",
     "coc-pyright",
     "coc-python",
     "coc-rls",
     "coc-rust-analyzer",
     "coc-tailwindcss",
     "coc-tsserver",
+    "coc-lua",
+    "coc-sumneko-lua"
 }
 
 -- use <c-space> to trigger completion.
