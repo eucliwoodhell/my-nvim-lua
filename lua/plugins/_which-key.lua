@@ -1,4 +1,6 @@
+local keymap = vim.api.nvim_set_keymap
 local wk = require("which-key")
+
 wk.setup {
   plugins = {
     marks = false,
@@ -22,5 +24,8 @@ local mappings = {
   w = { ":w<cr>", "Save" },
   x = { ":bdelete<cr>", "Close" },
 }
+
+keymap('n', '<leader>t', ':WhichKey<CR>', {})
+keymap('n', '<leader>tf', ':WhichKey <leader><CR>', {})
 
 wk.register(mappings, {prefix = "<leader>" })

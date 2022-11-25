@@ -14,7 +14,6 @@ return require('packer').startup({
                 use 'wbthomason/packer.nvim'
                 -- buffer bar head
                 use 'ap/vim-buftabline'
-
                 -- nerdtree
                 use { 'preservim/nerdtree' }
                 -- coc
@@ -61,7 +60,8 @@ return require('packer').startup({
                 -- css
                 use { 'ap/vim-css-color' }
                 use { 'jvanja/vim-bootstrap4-snippets' }
-
+                -- multiple selectector visual
+                use { 'mg979/vim-visual-multi', branch='master' }
                 if packer_bootstrap then
                         require('packer').sync()
                 end

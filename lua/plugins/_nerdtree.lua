@@ -2,7 +2,7 @@ local g = vim.g
 local keymap = vim.api.nvim_set_keymap
 
 g.NERDTreeShowHidden = true
-g.NERDTreeWinSize = 30
+g.NERDTreeWinSize = 20
 g.NERDTreeAutoDeleteBuffer = true
 
 vim.api.nvim_exec([[ autocmd vimenter * NERDTree ]], false)

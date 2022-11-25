@@ -5,6 +5,8 @@
 -- vim.g   = read and write value global {Option use}.
 local general_option = vim.opt
 local editor_option  = vim.o
+local keymap         = vim.api.nvim_set_keymap
+local opt = { noremap = true, silent = true, expr = true}
 
 vim.cmd("syntax on")
 
@@ -45,17 +47,31 @@ local options = {
     -- writebackup  = false     -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 }
 
-vim.g.mapleader               = " "
+vim.g.mapleader = " "
 vim.g.macvim_skip_colorscheme = 1
 editor_option.shortmess       = editor_option.shortmess .. 'c'
+keymap('', '<Space>', '<Nop>', opt)
 
 -- keys map
-vim.api.nvim_set_keymap('n', '<F8>', ':tabp<CR>', {})
-vim.api.nvim_set_keymap('n', '<F7>', ':tabn<CR>', {})
-vim.api.nvim_set_keymap('n', '<F6>', ':tabnew<CR>', {})
-vim.api.nvim_set_keymap('n', '<F4>', ':bdelete<CR>', {})
-vim.api.nvim_set_keymap('n', '<F3>', ':bnext<CR>', {})
-vim.api.nvim_set_keymap('n', '<F2>', ':bprevious<CR>', {})
+-- keymap('n', '<F8>', ':tabp<CR>', {})
+-- keymap('n', '<F7>', ':tabn<CR>', {})
+
+keymap('n', '<leader>w', ':w!<CR>', {})
+keymap('n', '<leader>d', ':bdelete<CR>', {})
+keymap('n', '<leader>m', ':bnext<CR>', {})
+keymap('n', '<leader>z', ':bprevious<CR>', {})
+
+keymap('n', '<leader>wq', ':qw<CR>', {})
+keymap('n', '<leader>q', ':quit<CR>', {})
+keymap('n', '<leader>Q', ':q!<CR>', {})
+
+keymap("n", "<leader>f", ':Format<CR>', {})
+keymap('n', '<leader>t', ':WhichKey<CR>', {})
+keymap('n', '<leader>tf', ':WhichKey <leader><CR>', {})
+
+-- move at the start and end of line easily
+keymap("", "Z", "^", {})
+keymap("", "X", "$", {})
 
 for k, v in pairs(options) do
   general_option[k] = v
