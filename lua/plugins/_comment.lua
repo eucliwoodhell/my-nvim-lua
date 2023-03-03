@@ -5,7 +5,7 @@ vim.g.kommentary_create_default_mappings = false
 
 keymap("n", "<leader>/", "<Plug>kommentary_line_default", {})
 keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
-keymap("x", "<leader>c", "<Plug>kommentary_visual_default", {})
+vim.api.nvim_set_keymap("x", "<leader>c", "<Plug>kommentary_visual_default", {})
 
 
 require('kommentary.config').configure_language("typescript", {

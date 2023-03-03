@@ -19,7 +19,6 @@ g["coc_global_extensions"] = {
     "coc-lists",
     "coc-pyright",
     "coc-python",
-    "coc-rls",
     "coc-rust-analyzer",
     "coc-tailwindcss",
     "coc-tsserver",

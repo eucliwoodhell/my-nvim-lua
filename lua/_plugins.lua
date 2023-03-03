@@ -44,6 +44,16 @@ return require('packer').startup({
                 -- trouble
                 use { 'kyazdani42/nvim-web-devicons' }
                 use { 'folke/trouble.nvim' }
+                use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons",
+                        config = function()
+                                require("trouble").setup {
+                                        -- your configuration comes here
+                                        -- or leave it empty to use the default settings
+                                        -- refer to the configuration section below
+                                        icons=false
+                                }
+                        end
+                }
                 -- decoration syntax
                 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
                 -- theme
@@ -61,7 +71,7 @@ return require('packer').startup({
                 use { 'ap/vim-css-color' }
                 use { 'jvanja/vim-bootstrap4-snippets' }
                 -- multiple selectector visual
-                use { 'mg979/vim-visual-multi', branch='master' }
+                use { 'mg979/vim-visual-multi', branch = 'master' }
                 if packer_bootstrap then
                         require('packer').sync()
                 end

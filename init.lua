@@ -1,9 +1,11 @@
 require("_plugins")
-require("_keymap")
 require("_color")
 
 -- Config
 require("config._packer")
+require("config._keymap")
+require("config._options")
+require("config._autocommands")
 
 -- Pluggins
 require("plugins._coc")

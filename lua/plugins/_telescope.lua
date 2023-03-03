@@ -15,11 +15,6 @@ require("telescope").setup({
   }
 })
 
-require("telescope").load_extension "file_browser"
-
-require("trouble").setup({
-  icons=false
-})
 
 keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
 keymap('n', '<C-N>', ":Telescope file_browser<CR>", { noremap = true })
