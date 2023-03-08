@@ -32,12 +32,12 @@ local options = {
     tabstop         = 2,         -- insert 2 spaces for a tab
     softtabstop     = 2, -- Sets the number of column for a tab
     shiftwidth      = 2, -- Indents will have a width of 2
-    termguicolors   = false,     -- set term gui colors (most terminals support this)
+    termguicolors   = true,      -- set term gui colors (most terminals support this)
     timeoutlen      = 500,       -- timeout length
     undofile        = true,      -- enable persistent undo
     updatetime      = 300,       -- faster completion
     wrap            = true,      -- display lines as one long line
-    -- writebackup  = false     -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
+    -- writebackup  = false     -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edite
 }
 
 for k, v in pairs(options) do

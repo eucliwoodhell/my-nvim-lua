@@ -1,5 +1,6 @@
 require("_plugins")
-require("_color")
+require("theme._color")
+require('theme._evil_lualine')
 
 -- Config
 require("config._packer")

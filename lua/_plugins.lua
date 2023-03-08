@@ -43,7 +43,6 @@ return require('packer').startup({
                 use { 'tami5/lspsaga.nvim' }
                 -- trouble
                 use { 'kyazdani42/nvim-web-devicons' }
-                use { 'folke/trouble.nvim' }
                 use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons",
                         config = function()
                                 require("trouble").setup {
@@ -56,10 +55,23 @@ return require('packer').startup({
                 }
                 -- decoration syntax
                 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+                -- theme 256 bit
                 -- theme
+                use({ 'rose-pine/neovim', as = 'rose-pine' })
+                use { "catppuccin/nvim", as = "catppuccin" }
+                use 'navarasu/onedark.nvim'
+                use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
+                -- lualine
+                use {
+                  'nvim-lualine/lualine.nvim',
+                  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+                }
+                -- end
+                -- theme 24 bit
                 use { 'jacoborus/tender.vim' }
                 use { 'vim-airline/vim-airline' }
                 use { 'vim-airline/vim-airline-themes' }
+                -- end
                 use { 'ryanoasis/vim-devicons' }
                 use { 'yamatsum/nvim-cursorline' }
                 use { 'camspiers/animate.vim' }
@@ -72,6 +84,15 @@ return require('packer').startup({
                 use { 'jvanja/vim-bootstrap4-snippets' }
                 -- multiple selectector visual
                 use { 'mg979/vim-visual-multi', branch = 'master' }
+                -- codeium / alternative free copilot
+                use { 'Exafunction/codeium.vim',
+                        config = function()
+                                vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+                                vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+                        end 
+                }
+                --  nvim-colorizer.lua
+                use { 'norcalli/nvim-colorizer.lua' }
                 if packer_bootstrap then
                         require('packer').sync()
                 end

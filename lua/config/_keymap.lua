@@ -54,7 +54,8 @@ keymap("n", "<CR-S-Right>", function() vim.cmd("vertical resize +2") end, set_op
 -- delete & cut
 keymap("n", "x",[["_x]], set_opts({}))
 keymap({"n", "v"}, "d", [["_d]], set_opts({}))
-keymap("n", "D", [["_D]], set_opts({}))
+keymap("n", "F", [["_D]], set_opts({}))
+keymap("n", "D", [["_d0]], set_opts({}))
 
 -- search and replace
 keymap('n', '<leader>r', ':%s/<C-r><C-w>/<C-r>0/g<CR>', {})
