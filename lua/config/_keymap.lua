@@ -58,7 +58,9 @@ keymap("n", "F", [["_D]], set_opts({}))
 keymap("n", "D", [["_d0]], set_opts({}))
 
 -- search and replace
-keymap('n', '<leader>r', ':%s/<C-r><C-w>/<C-r>0/g<CR>', {})
+keymap("n", "<leader>r", [[:%s/\V<C-r>///g<left><left>]], { desc = "Buscar texto y reemplazar" })
+keymap("v", "<leader>r", [[:'<,'>s/\V<C-r>///g<left><left>]], { desc = "Buscar texto y reemplazar" })
 
 keymap('n', '<leader>t', ':WhichKey<CR>', {})
 keymap('n', '<leader>tf', ':WhichKey <leader><CR>', {})
+
