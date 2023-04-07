@@ -24,9 +24,9 @@ end
 keymap('', '<Space>', '<Nop>', opt)
 
 -- Actions keys
-keymap("n", "<leader>W", function() vim.cmd("write") end, set_opts({ desc = "Guardando buffer" }))
-keymap("n", "<leader>Q", function() vim.cmd("quit") end, set_opts({ desc = "Saliendo del buffer" }))
-keymap("n", "<leader>C", function() vim.cmd("DeleteCurrentBuffer") end, set_opts({ desc = "Guardnado y Cerrando Buffer" }))
+keymap("n", "<leader>w", function() vim.cmd("write") end, set_opts({ desc = "Guardando buffer" }))
+keymap("n", "<leader>q", function() vim.cmd("quit") end, set_opts({ desc = "Saliendo del buffer" }))
+keymap("n", "<leader>wq", function() vim.cmd("DeleteCurrentBuffer") end, set_opts({ desc = "Guardnado y Cerrando Buffer" }))
 keymap("n", "<leader>F", function() vim.cmd("Format") end, set_opts({ desc = "Organizando código" }))
 keymap("n", "<leader>m", function() vim.cmd("bnext") end, set_opts({ desc = "Siguiente buffer" }))
 keymap("n", "<leader>z", function() vim.cmd("bprevious") end, set_opts({ desc = "Anterior buffer" }))

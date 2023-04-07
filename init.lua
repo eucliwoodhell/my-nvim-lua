@@ -1,6 +1,8 @@
 require("_plugins")
+
+-- theme color
 require("theme._color")
-require('theme._evil_lualine')
+require('theme._lualine')
 
 -- Config
 require("config._packer")
@@ -16,3 +18,4 @@ require("plugins._lspsaga")
 require("plugins._cursorline")
 require("plugins._treesitter")
 require("plugins._comment")
+require("plugins._which-key")
