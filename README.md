@@ -1,12 +1,19 @@
+# Installation
+Cloning GitHub repo into ~/.config/nvim or your directory and run file .install.sh.
+
+# Screenshots
+![screenshot](./.install/screen_one.png)
+
+# Packer
 | Command                             | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------------ |
-| `PlugInstall [name ...] [#threads]` | Install plugins                                                    |
-| `PlugUpdate [name ...] [#threads]`  | Install or update plugins                                          |
-| `PlugClean[!]`                      | Uninstall plugins (remove entries from `.vimrc` and source first)  |
-| `PlugUpgrade`                       | Upgrade vim-plug itself                                            |
+| `PackerInstall`                     | Install plugins                                                    |
+| `PackerClean`                       | Install or update plugins                                          |
+| `PackerCompile`                     | Upgrade vim-plug itself                                            |
+| `PackerSync`                        | Check the staus and update plugins                                 |
 | `PlugStatus`                        | Check the status of plugins                                        |
-| `PlugDiff`                          | Examine changes from the previous update and the pending changes   |
-| `PlugSnapshot[!] [output path]`     | Generate script for restoring the current snapshot of the plugins  |
+
+# Keybindings
 
 
 h   move one character left
@@ -46,19 +53,3 @@ Ctrl-I  jump to next cursor position (after Ctrl-O)
 Ctrl-Y  move view pane up
 Ctrl-E  move view pane down
 
-n   next matching search pattern
-N   previous matching search pattern
-*   next whole word under cursor
-#   previous whole word under cursor
-g*  next matching search (not whole word) pattern under cursor
-g#  previous matching search (not whole word) pattern under cursor
-gd  go to definition/first occurrence of the word under cursor
-%   jump to matching bracket { } [ ] ( )
-
-fX  to next 'X' after cursor, in the same line (X is any character)
-FX  to previous 'X' before cursor (f and F put the cursor on X)
-tX  til next 'X' (similar to above, but cursor is before X)
-TX  til previous 'X'
-;   repeat above, in same direction
-,   repeat above, in reverse direction
-g- y g+ por esas ramas hacia atr‡s o hacia adelante mediante
