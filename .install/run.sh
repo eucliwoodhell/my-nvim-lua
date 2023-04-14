@@ -8,18 +8,23 @@ BLUE=$(tput setaf 4)
 NC=$(tput sgr0)
 BOLD=$(tput bold)
 
+declare -r CONFIG_DIR="$HOME/.config/nvim"
+declare -r CONFIG_FILE="$CONFIG_DIR/init.vim"
+declare -r CONFIG_BACKUP="$HOME/nvim.bak/"
+declare -r BRANCH="main"
+declare -r REPO_URL="https://github.com/eucliwoodhell/my-nvim-lua.git"
+
 function main () {
   logo
 
-  check_os_system
-  detect_platform
+  check_dependencies
 
   while [ true ]; do
     read -p "Do you want to backup your config? (y/n) " yn
     case $yn in
       [Yy]* )
         echo "${GREEN}${BOLD}Backing up config...${NC}"
-        cp -r ~/.config/nvim ~/.config/nvim.bak/
+        cp -r "$CONFIG_DIR" "$CONFIG_BACKUP"
         echo "${GREEN}${BOLD}Config backed up!${NC}"
         break
         ;;
@@ -32,16 +37,89 @@ function main () {
         ;;
     esac
   done
+
+  check_os_system
+
+  while [ true ]; do
+    read -p "Do you want to continue install? (y/n) " yn
+    case $yn in
+      [Yy]* )
+        if [ -d "$CONFIG_DIR" ]; then
+          echo "${GREEN}${BOLD}Removing dir $CONFIG_DIR...${NC}"
+          rm -rf "$CONFIG_DIR"
+          echo "${GREEN}${BOLD}Dir $CONFIG_DIR removed!${NC}"
+        fi
+        echo "${GREEN}${BOLD}Cloning repo...${NC}"
+        clone_repo
+        echo "${GREEN}${BOLD}Repo cloned!${NC}"
+        echo "${GREEN}${BOLD}Installing vim plugins...${NC}"
+        # TODO install vim plugins
+        break
+        ;;
+      [Nn]* )
+        break
+        ;;
+      * )
+        echo "${RED}${BOLD}Please answer yes or no.${NC}"
+        ;;
+    esac
+  done
+
+  msg="${GREEN}${BOLD}Install completed! Thank you, dir config is this $CONFIG_DIR${NC} \
+  ${GREEN}${BOLD}You can find your file config in $CONFIG_FILE${NC} \"
+  ${GREEN}${BOLD}You can find your backup config in $CONFIG_BACKUP${NC} \"
+  ${GREEN}${BOLD}You can find your branch in $BRANCH${NC}"
+
+  echo "$msg"
 }
 
-function install_homebrew() {
-        which -s brew
-        if [[ $? != 0 ]]; then
-                echo "==================================="
-                echo "Installing Homebrew"
-                echo "==================================="
-                ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        fi
+function install_ios() {
+  which -s brew
+  if [[ $? != 0 ]]; then
+    while [ true ]; do
+      read -p "Do you want to install Homebrew? (y/n) " yn
+      case $yn in
+        [Yy]* )
+          echo "${GREEN}${BOLD}Installing Homebrew...${NC}"
+          ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+          echo "${GREEN}${BOLD}Homebrew installed!${NC}"
+          break
+          ;;
+        [Nn]* )
+          echo "${GREEN}${BOLD}Homebrew not installed!${NC}"
+          break
+          ;;
+        * )
+          echo "${RED}${BOLD}Please answer yes or no.${NC}"
+          ;;
+      esac
+    done
+  fi
+
+  if [[ -f "/usr/local/bin/brew" ]]; then
+    echo "${GREEN}${BOLD}Homebrew already installed!${NC}"
+    while [ true ]; do
+      read -p "Do you want to install nvim? (y/n) " yn
+      case $yn in
+        [Yy]* )
+          echo "${GREEN}${BOLD}Installing nvim...${NC}"
+          brew install nvim
+          echo "${GREEN}${BOLD}nvim installed!${NC}"
+          break
+          ;;
+        [Nn]* )
+          echo "${GREEN}${BOLD}nvim not installed!${NC}"
+          break
+          ;;
+        * )
+          echo "${RED}${BOLD}Please answer yes or no.${NC}"
+          ;;
+      esac
+    done
+  else
+    echo "${GREEN}${BOLD}Homebrew not installed!${NC}"
+    exit 1
+  fi
 }
 
 function check_os_system() {
@@ -50,16 +128,25 @@ function check_os_system() {
   case "$os" in 
     Darwin)
       echo "${GREEN}${BOLD}System is MacOS brew install${NC}"
+      install_ios
       ;;
     Linux)
       if [ -f "/etc/arch-release" || -f "/etc/artix-release" ]; then
         echo "${GREEN}${BOLD}System is Arch Linux: sudo pacman -S ${NC}"
+        echo "${GREEN}${BOLD}Installing nvim ${NC}"
+        sudo pacman -S nvim
       elif [ -f "/etc/fedora-release" || [-f "/etc/redhat-release"]]; then
         echo "${GREEN}${BOLD}System is Fedora: sudo dnf install -y ${NC}"
+        echo "${GREEN}${BOLD}Installing nvim ${NC}"
+        sudo dnf install -y nvim
       elif [ -f "/etc/gentoo-release" ]; then
         echo "${GREEN}${BOLD}System is Gentoo: sudo emerge -y ${NC}"
+        echo "${GREEN}${BOLD}Installing nvim ${NC}"
+        sudo emerge -y nvim
       else
         echo "${GREEN}${BOLD}System is Linux: sudo apt install -y ${NC}"
+        echo "${GREEN}${BOLD}Installing nvim ${NC}"
+        sudo apt install -y nvim
       fi
       ;;
     FreeBSD)
@@ -96,6 +183,17 @@ function check_dependencies() {
   fi
 }
 
+function clone_repo() {
+  echo "${GREEN}${BOLD}Cloning repo...${NC}"
+  if ! git clone --branch "$BRANCH" --depth 1 "$REPO_URL" "$CONFIG_DIR"; then
+    echo "${RED}${BOLD}Failed to clone repo${NC}"
+    exit 1
+  fi
+  echo "${GREEN}${BOLD}Repo cloned!${NC}"
+  cd $CONFIG_DIR
+  echo "${GREEN}${BOLD}Backing up config...${NC}"
+  echo "${GREEN}${BOLD}Done!...${NC}"
+}
 
 function logo () {
   echo "${BLUE}"
@@ -108,7 +206,7 @@ function logo () {
 ██╔══██║██╔══██╗██║     ██╔══██║██╔══╝  ██╔══██╗
 ██║  ██║██║  ██║╚██████╗██║  ██║███████╗██║  ██║
 ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-                                                
+
 EOF
   echo "==============================================="
   echo "${NC}"
