@@ -53,3 +53,10 @@ Ctrl-I  jump to next cursor position (after Ctrl-O)
 Ctrl-Y  move view pane up
 Ctrl-E  move view pane down
 
+# TODO
+
+| Description                                                   |
+| ------------------------------------------------------------- |
+| Add Keybindings readme.md                                     |
+| Add config codeium readme.md                                  |
+| Script shell for install plugins with packer terminal         | 
