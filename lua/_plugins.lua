@@ -91,8 +91,15 @@ return require('packer').startup({
                                 vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
                         end 
                 }
-                --  nvim-colorizer.lua
-                use { 'norcalli/nvim-colorizer.lua' }
+        --  nvim-colorizer.lua
+        use 'NvChad/nvim-colorizer.lua'
+        use { 'mrshmllow/document-color.nvim', config = function()
+          require("document-color").setup {
+            -- Default options
+            mode = "background", -- "background" | "foreground" | "single"
+          }
+          end
+        }
                 if packer_bootstrap then
                         require('packer').sync()
                 end
