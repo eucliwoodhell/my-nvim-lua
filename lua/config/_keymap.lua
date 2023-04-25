@@ -31,7 +31,8 @@ keymap("n", "<leader>F", function() vim.cmd("Format") end, set_opts({ desc = "Or
 keymap("n", "<leader>m", function() vim.cmd("bnext") end, set_opts({ desc = "Siguiente buffer" }))
 keymap("n", "<leader>z", function() vim.cmd("bprevious") end, set_opts({ desc = "Anterior buffer" }))
 keymap("n", "<leader>q", function() vim.cmd("bdelete") end, set_opts({ desc = "Cerrando buffer" }))
-keymap("n", "<leader>nm", function () vim.cmd("messages") end, set_opts({ desc = "Mensajes"}))
+keymap("n", "<leader>nm", function() vim.cmd("messages") end, set_opts({ desc = "Mensajes" }))
+keymap("n", "<leader>Q", function() vim.cmd("wq!") end, set_opts({ desc = "Salir" }))
 
 -- move keys
 keymap("", "Z", "^", set_opts({desc="cursor right"}))
