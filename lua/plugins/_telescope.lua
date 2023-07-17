@@ -1,3 +1,4 @@
+-- install dependencies brew install ripgrep
 local keymap = vim.api.nvim_set_keymap
 
 require("telescope").setup({

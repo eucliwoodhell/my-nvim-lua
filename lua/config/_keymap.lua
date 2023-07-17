@@ -3,6 +3,7 @@
 -- vim.wo  = read and write value windows
 -- vim.bo  = read and write file buffer
 -- vim.g   = read and write value global {Option use}.
+-- option
 vim.g.mapleader = " "
 vim.g.macvim_skip_colorscheme = 1
 
@@ -25,6 +26,7 @@ keymap('', '<Space>', '<Nop>', opt)
 
 -- Actions keys
 keymap("n", "<leader>w", function() vim.cmd("write") end, set_opts({ desc = "Guardando buffer" }))
+keymap("n", "<leader>W", function() vim.cmd("w!") end, set_opts({ desc = "Guardando buffer !" }))
 keymap("n", "<leader>q", function() vim.cmd("quit") end, set_opts({ desc = "Saliendo del buffer" }))
 keymap("n", "<leader>wq", function() vim.cmd("DeleteCurrentBuffer") end, set_opts({ desc = "Guardnado y Cerrando Buffer" }))
 keymap("n", "<leader>F", function() vim.cmd("Format") end, set_opts({ desc = "Organizando código" }))
@@ -33,6 +35,7 @@ keymap("n", "<leader>z", function() vim.cmd("bprevious") end, set_opts({ desc = 
 keymap("n", "<leader>q", function() vim.cmd("bdelete") end, set_opts({ desc = "Cerrando buffer" }))
 keymap("n", "<leader>nm", function() vim.cmd("messages") end, set_opts({ desc = "Mensajes" }))
 keymap("n", "<leader>Q", function() vim.cmd("wq!") end, set_opts({ desc = "Salir" }))
+keymap("n", "<leader>pf", "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>", set_opts({ desc = "Buscar" }))
 
 -- move keys
 keymap("", "Z", "^", set_opts({desc="cursor right"}))
@@ -59,9 +62,17 @@ keymap("n", "F", [["_D]], set_opts({}))
 keymap("n", "D", [["_d0]], set_opts({}))
 
 -- search and replace
+-- :cd to the directory of the current file
 keymap("n", "<leader>r", [[:%s/\V<C-r>///g<left><left>]], { desc = "Buscar texto y reemplazar" })
 keymap("v", "<leader>r", [[:'<,'>s/\V<C-r>///g<left><left>]], { desc = "Buscar texto y reemplazar" })
+keymap("n", "<leader>g", [[:vimgrep /\V<C-r>//gj **/*<c-r>=setcmdpos(getcmdpos()-8)[1]<cr>]], { desc = "Buscar texto en todo el directorio" })
+-- :copen to open the quickfix window
+keymap("n", "<leader>gr", [[:cfdo %s/\V<C-r>///gc | update<c-r>=setcmdpos(getcmdpos()-12)[1]<cr>]], { desc = "Abrir quickfix" })
 
 keymap('n', '<leader>t', ':WhichKey<CR>', {})
 keymap('n', '<leader>tf', ':WhichKey <leader><CR>', {})
 
+--  left cursor position
+--  <c-r>=setcmdpos(getcmdpos()-31)[1]<cr>
+--  <left><left>
+--  repeat('<left>', 31)

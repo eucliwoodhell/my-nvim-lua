@@ -105,6 +105,9 @@ function install_ios() {
           echo "${GREEN}${BOLD}Installing nvim...${NC}"
           brew install nvim
           echo "${GREEN}${BOLD}nvim installed!${NC}"
+          echo "${GREEN}${BOLD}Installing dependencies...${NC}"
+          brew install ripgrep
+          echo "${GREEN}${BOLD}Dependencies installed!${NC}"
           break
           ;;
         [Nn]* )
