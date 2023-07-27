@@ -1,8 +1,8 @@
 local o = vim.o
 local g = vim.g
 local keymap = vim.api.nvim_set_keymap
-local expr_opts = { noremap = true, silent = true, expr = true }
-local opts = { noremap = true, silent = true }
+local expr_opts = {noremap = true, silent = true, expr = true}
+local opts = {noremap = true, silent = true}
 
 o.hidden = true
 o.backup = false
@@ -11,19 +11,9 @@ o.updatetime = 300
 
 -- extensions
 g["coc_global_extensions"] = {
-    "coc-css",
-    "coc-json",
-    "coc-cssmodules",
-    "coc-eslint",
-    "coc-prettier",
-    "coc-lists",
-    "coc-pyright",
-    "coc-python",
-    "coc-rust-analyzer",
-    "coc-tailwindcss",
-    "coc-tsserver",
-    "coc-lua",
-    "coc-sumneko-lua"
+    "coc-css", "coc-json", "coc-cssmodules", "coc-eslint", "coc-prettier",
+    "coc-lists", "coc-pyright", "coc-python", "coc-rust-analyzer",
+    "coc-tailwindcss", "coc-tsserver", "coc-lua", "coc-sumneko-lua"
 }
 
 -- use <c-space> to trigger completion.
@@ -37,25 +27,19 @@ keymap("n", "<leader>rn", "<Plug>(coc-rename)", {})
 keymap("n", "<leader>ta", ":call CocAction('diagnosticToggle')<CR>", {})
 
 -- use CR trigger autocomplete
-keymap("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], expr_opts)
+keymap("i", "<CR>",
+       [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
+       expr_opts)
 
 -- use tab and s-tab to move on snippet and autocomplete
 g["coc_snippet_next"] = ""
 g["coc_snippet_prev"] = ""
-keymap(
-    "i",
-    "<tab>",
-    [[coc#pum#visible() ? coc#pum#next(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetNext', [])<cr>" : "\<c-j>"]]
-    ,
-    expr_opts
-)
-keymap(
-    "i",
-    "<s-tab>",
-    [[coc#pum#visible() ? coc#pum#prev(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetPrev', [])<cr>" : "\<c-k>"]]
-    ,
-    expr_opts
-)
+keymap("i", "<tab>",
+       [[coc#pum#visible() ? coc#pum#next(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetNext', [])<cr>" : "\<c-j>"]],
+       expr_opts)
+keymap("i", "<s-tab>",
+       [[coc#pum#visible() ? coc#pum#prev(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetPrev', [])<cr>" : "\<c-k>"]],
+       expr_opts)
 
 -- formatting selected code. Followed by highlighted code
 keymap("x", "<leader>f", "<Plug>(coc-format-selected)", {})
@@ -74,22 +58,24 @@ function Show_documentation()
     elseif vim.fn["coc#rpc#ready"]() then
         vim.fn.CocActionAsync("doHover")
     else
-        vim.api.nvim_command(
-            "!" .. vim.bo.keywordprg .. " " .. vim.fn.expand("<cword>")
-        )
+        vim.api.nvim_command("!" .. vim.bo.keywordprg .. " " ..
+                                 vim.fn.expand("<cword>"))
     end
 end
 keymap("n", "K", ":lua Show_documentation() <CR>", opts)
 
-
 -- Commands
 -- add `:Format` command to format current buffer.
-vim.api.nvim_create_user_command("Format", ":CocCommand prettier.formatFile", { nargs = 0 })
+vim.api.nvim_create_user_command("Format", ":CocCommand prettier.formatFile",
+                                 {nargs = 0})
 
 -- add `:OR` command for organize imports of the current buffer.
-vim.api.nvim_create_user_command("OI", ":call CocActionAsync('runCommand', 'editor.action.organizeImport')",
-    { nargs = 0 })
+vim.api.nvim_create_user_command("OI",
+                                 ":call CocActionAsync('runCommand', 'editor.action.organizeImport')",
+                                 {nargs = 0})
 
 -- buffer sync
-vim.api.nvim_exec([[ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart ]], false)
-vim.api.nvim_exec([[ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear ]], false)
+vim.api.nvim_exec(
+    [[ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart ]], false)
+vim.api.nvim_exec([[ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear ]],
+                  false)

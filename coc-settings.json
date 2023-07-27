@@ -23,6 +23,8 @@
         "ImportDeclaration": "never",
         "ExportDeclaration": { "multiline": true, "minProperties": 3 }
    }],
+   "eslint.autoFixOnSave": true,
+   "eslint.probe": ["javascript","javascriptreact","typescript","typescriptreact","html","vue","markdown"],
    "html.filetypes": [
            "html",
            "handlebars",
