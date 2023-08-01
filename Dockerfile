@@ -1,8 +1,11 @@
-FROM alpine:latest
+FROM debian:bullseye-slim
 
-RUN apk update
-RUN apk add vim
+WORKDIR /app
 
-# install node
+RUN apt-get update \
+  && apt-get install -y vim git curl neovim nodejs npm \
+  && apt-get clean
 
+COPY .install/run.sh /app/run.sh
 
+CMD ["/bin/bash", "/app/run.sh"]

@@ -14,56 +14,67 @@ declare -r CONFIG_BACKUP="$HOME/nvim.bak/"
 declare -r BRANCH="main"
 declare -r REPO_URL="https://github.com/eucliwoodhell/my-nvim-lua.git"
 
+
 function main () {
   logo
 
   check_dependencies
 
-  while [ true ]; do
-    read -p "Do you want to backup your config? (y/n) " yn
-    case $yn in
-      [Yy]* )
-        echo "${GREEN}${BOLD}Backing up config...${NC}"
-        cp -r "$CONFIG_DIR" "$CONFIG_BACKUP"
-        echo "${GREEN}${BOLD}Config backed up!${NC}"
-        break
-        ;;
-      [Nn]* )
-        echo "${GREEN}${BOLD}Config not backed up!${NC}"
-        break
-        ;;
-      * )
-        echo "${RED}${BOLD}Please answer yes or no.${NC}"
-        ;;
-    esac
-  done
+  if [ -z "$ENV" ]; then
+    while [ true ]; do
+      read -p "Do you want to backup your config? (y/n) " yn
+      case $yn in
+        [Yy]* )
+          echo "${GREEN}${BOLD}Backing up config...${NC}"
+          cp -r "$CONFIG_DIR" "$CONFIG_BACKUP"
+          echo "${GREEN}${BOLD}Config backed up!${NC}"
+          break
+          ;;
+        [Nn]* )
+          echo "${GREEN}${BOLD}Config not backed up!${NC}"
+          break
+          ;;
+          * )
+          echo "${RED}${BOLD}Please answer yes or no.${NC}"
+          sleep 5
+          ;;
+      esac
+    done
 
-  check_os_system
+    check_os_system
 
-  while [ true ]; do
-    read -p "Do you want to continue install? (y/n) " yn
-    case $yn in
-      [Yy]* )
-        if [ -d "$CONFIG_DIR" ]; then
-          echo "${GREEN}${BOLD}Removing dir $CONFIG_DIR...${NC}"
-          rm -rf "$CONFIG_DIR"
-          echo "${GREEN}${BOLD}Dir $CONFIG_DIR removed!${NC}"
-        fi
-        echo "${GREEN}${BOLD}Cloning repo...${NC}"
-        clone_repo
-        echo "${GREEN}${BOLD}Repo cloned!${NC}"
-        echo "${GREEN}${BOLD}Installing vim plugins...${NC}"
-        # TODO install vim plugins
-        break
-        ;;
-      [Nn]* )
-        break
-        ;;
+    while [ true ]; do
+      read -p "Do you want to continue install? (y/n) " yn
+      case $yn in
+        [Yy]* )
+          if [ -d "$CONFIG_DIR" ]; then
+            echo "${GREEN}${BOLD}Removing dir $CONFIG_DIR...${NC}"
+            rm -rf "$CONFIG_DIR"
+            echo "${GREEN}${BOLD}Dir $CONFIG_DIR removed!${NC}"
+          fi
+          echo "${GREEN}${BOLD}Cloning repo...${NC}"
+          clone_repo
+          echo "${GREEN}${BOLD}Repo cloned!${NC}"
+          echo "${GREEN}${BOLD}Installing vim plugins...${NC}"
+          # TODO install vim plugins
+          break
+          ;;
+        [Nn]* )
+          break
+          ;;
       * )
-        echo "${RED}${BOLD}Please answer yes or no.${NC}"
-        ;;
-    esac
-  done
+          echo "${RED}${BOLD}Please answer yes or no.${NC}"
+          sleep 5
+          ;;
+      esac
+    done
+  else
+    echo "${GREEN}${BOLD}Cloning repo...${NC}"
+    clone_repo
+    echo "${GREEN}${BOLD}Repo cloned!${NC}"
+    echo "${GREEN}${BOLD}Installing vim plugins...${NC}"
+  fi
+
 
   msg="${GREEN}${BOLD}Install completed! Thank you, dir config is this $CONFIG_DIR${NC} \
   ${GREEN}${BOLD}You can find your file config in $CONFIG_FILE${NC} \"
@@ -74,6 +85,7 @@ function main () {
 }
 
 function install_ios() {
+  echo "${GREEN}${BOLD}Installing ios...${NC}"
   which -s brew
   if [[ $? != 0 ]]; then
     while [ true ]; do
@@ -91,6 +103,7 @@ function install_ios() {
           ;;
         * )
           echo "${RED}${BOLD}Please answer yes or no.${NC}"
+          sleep 5
           ;;
       esac
     done
@@ -116,6 +129,7 @@ function install_ios() {
           ;;
         * )
           echo "${RED}${BOLD}Please answer yes or no.${NC}"
+          sleep 5
           ;;
       esac
     done
@@ -128,6 +142,7 @@ function install_ios() {
 function check_os_system() {
   echo "${GREEN}${BOLD}Checking system...${NC}"
   os=$(uname -s)
+  echo "${GREEN}${BOLD}System is $os${NC}"
   case "$os" in 
     Darwin)
       echo "${GREEN}${BOLD}System is MacOS brew install${NC}"

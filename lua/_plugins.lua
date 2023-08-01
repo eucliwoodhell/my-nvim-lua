@@ -19,7 +19,21 @@ return require('packer').startup({
         use {'preservim/nerdtree'}
         -- coc
         -- Plug 'neoclide/coc.nvim'
-        use {'neoclide/coc.nvim', branch = 'release'}
+        -- use {'neoclide/coc.nvim', branch = 'release'}
+        use {
+            'VonHeikemen/lsp-zero.nvim',
+            branch = 'v2.x',
+            requires = {
+                -- LSP Support
+                {'neovim/nvim-lspconfig'}, -- Required
+                {'williamboman/mason.nvim'}, -- Optional
+                {'williamboman/mason-lspconfig.nvim'}, -- Optional
+                -- Autocompletion
+                {'hrsh7th/nvim-cmp'}, -- Required
+                {'hrsh7th/cmp-nvim-lsp'}, -- Required
+                {'L3MON4D3/LuaSnip'} -- Required
+            }
+        }
         -- Completion framework
         use {'hrsh7th/nvim-cmp'}
         -- SP completion source for nvim-cmp

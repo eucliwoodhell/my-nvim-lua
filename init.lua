@@ -11,7 +11,9 @@ require("config._options")
 require("config._autocommands")
 
 -- Pluggins
-require("plugins._coc")
+-- require("plugins._coc")
+require("plugins._lsp")
+require("plugins._mason")
 require("plugins._nerdtree")
 require("plugins._telescope")
 require("plugins._lspsaga")
