@@ -25,14 +25,17 @@ cmp.setup({
 
 -- Commands
 -- add `:Format` command to format current buffer.
-vim.api.nvim_create_user_command("Format", ":lua vim.lsp.buf.formatting()",
-                                 {nargs = 0})
+vim.api.nvim_create_user_command("Format", ":lua vim.lsp.buf.formatting()", {nargs = 0})
+vim.api.nvim_create_user_command("FormatSync", ":lua vim.lsp.buf.formatting_sync()", {nargs = 0})
+vim.api.nvim_create_user_command("FormatSyncSeq", ":lua vim.lsp.buf.formatting_seq_sync()", {nargs = 0})
 
-vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lua vim.diagnostic.open_float()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
 -- The following command requires plug-ins "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", and optionally "kyazdani42/nvim-web-devicons" for icon support
-vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', {noremap = true, silent = true})
 -- If you don't want to use the telescope plug-in but still want to see all the errors/warnings, comment out the telescope line and uncomment this:
 -- vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f', ':Format<CR>', {noremap = true, silent = true})
+
 

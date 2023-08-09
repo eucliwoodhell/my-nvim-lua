@@ -3,7 +3,7 @@ local keymap = vim.api.nvim_set_keymap
 
 g.NERDTreeShowHidden = true
 g.NERDTreeWinSize = 20
-g.NERDTreeAutoDeleteBuffer = true
+-- g.NERDTreeAutoDeleteBuffer = true
 
 vim.api.nvim_exec([[ autocmd vimenter * NERDTree ]], false)
 keymap('n', '<C-w>', ':NERDTree<CR>', {noremap = true})
