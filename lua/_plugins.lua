@@ -34,6 +34,9 @@ return require('packer').startup({
                 {'L3MON4D3/LuaSnip'} -- Required
             }
         }
+        -- git diff
+        use {"sindrets/diffview.nvim"}
+        use {"mhinz/vim-signify"}
         -- Completion framework
         use {'hrsh7th/nvim-cmp'}
         -- SP completion source for nvim-cmp
