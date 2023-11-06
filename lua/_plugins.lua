@@ -143,7 +143,17 @@ return require('packer').startup({
         })
       end
     })
-    use ({
+    use {
+      "imNel/monorepo.nvim",
+      config = function()
+        require("monorepo").setup({
+          -- config
+          autoload_telescope = true
+        })
+      end,
+      dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    }
+    use({
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
     })
