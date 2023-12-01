@@ -33,6 +33,9 @@ brew install --cask arduino
 brew install --cask visual-studio-code
 brew install --cask mongodb-compass
 brew install --cask postman
+brew tap git-chglog/git-chglog
+brew install git-chglog
+brew install btop
 
 # Apps
 brew install neovim
