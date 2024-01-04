@@ -96,7 +96,9 @@ keymap("n", "<leader>rg",
 
 keymap('n', '<leader>t', ':WhichKey<CR>', {})
 keymap('n', '<leader>tf', ':WhichKey <leader><CR>', {})
+keymap('n', '<leader>ts', ':sort<CR>', {})
 
+-- ctrl+ o: back to previous cursor
 --  left cursor position
 --  <c-r>=setcmdpos(getcmdpos()-31)[1]<cr>
 --  <left><left>
@@ -107,6 +109,7 @@ keymap('n', '<leader>tf', ':WhichKey <leader><CR>', {})
 -- vim.bo  = read and write file buffer
 -- vim.g   = read and write value global {Option use}.
 -- option
+
 vim.g.mapleader = " "
 vim.g.macvim_skip_colorscheme = 1
 
@@ -192,7 +195,7 @@ keymap("n", "<leader>g",
   [[:vimgrep /\V<C-r>//gj **/*<c-r>=setcmdpos(getcmdpos()-8)[1]<cr>]],
   { desc = "Search text and replace all files" })
 -- :copen to open the quickfix window
-keymap("n", "<leader>gr",
+keymap("n", "<leader>gs",
   [[:cfdo %s/\V<C-r>///gc | update<c-r>=setcmdpos(getcmdpos()-12)[1]<cr>]],
   { desc = "Open quickfix window and replace" })
 

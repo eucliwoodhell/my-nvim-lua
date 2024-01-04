@@ -143,6 +143,7 @@ return require('packer').startup({
         })
       end
     })
+    use { "folke/zen-mode.nvim" }
     use {
       "imNel/monorepo.nvim",
       config = function()
