@@ -12,7 +12,7 @@ require("config._autocommands")
 
 -- Pluggins
 -- require("plugins._coc")
-require("plugins._lsp")
+-- require("plugins._lsp")
 require("plugins._mason")
 require("plugins._nerdtree")
 require("plugins._telescope")
