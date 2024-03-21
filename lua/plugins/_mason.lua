@@ -28,7 +28,7 @@ require("mason-lspconfig").setup({
     "eslint",
     "dockerls",
     "bashls",
-    "sqlls"
+    "sqlls",
   },
 })
 
@@ -38,7 +38,9 @@ require("lspconfig").eslint.setup({
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "rust"
+    "rust",
+    "golang",
+    "react",
   },
   tsserver = {
     format = { enable = false }

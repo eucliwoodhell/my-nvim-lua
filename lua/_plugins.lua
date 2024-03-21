@@ -158,6 +158,12 @@ return require('packer').startup({
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
     })
+    --[[ use { 
+      'mfussenegger/nvim-dap',
+      dependencies = {
+        'rcarriga/nvim-dap-ui',
+      }
+    } ]]
     if packer_bootstrap then require('packer').sync() end
   end,
   config = {

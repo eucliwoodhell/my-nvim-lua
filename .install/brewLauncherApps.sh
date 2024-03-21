@@ -45,6 +45,7 @@ brew install --cask rectangle
 brew install gotop
 brew install --cask telegram-desktop
 brew install --cask firefox
+brew install stats
 
 # IA
 brew install --cask fig
