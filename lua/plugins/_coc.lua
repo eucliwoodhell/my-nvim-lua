@@ -27,19 +27,13 @@ keymap("n", "<leader>rn", "<Plug>(coc-rename)", {})
 keymap("n", "<leader>ta", ":call CocAction('diagnosticToggle')<CR>", {})
 
 -- use CR trigger autocomplete
-keymap("i", "<CR>",
-       [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
-       expr_opts)
+keymap("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], expr_opts)
 
 -- use tab and s-tab to move on snippet and autocomplete
 g["coc_snippet_next"] = ""
 g["coc_snippet_prev"] = ""
-keymap("i", "<tab>",
-       [[coc#pum#visible() ? coc#pum#next(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetNext', [])<cr>" : "\<c-j>"]],
-       expr_opts)
-keymap("i", "<s-tab>",
-       [[coc#pum#visible() ? coc#pum#prev(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetPrev', [])<cr>" : "\<c-k>"]],
-       expr_opts)
+keymap("i", "<tab>", [[coc#pum#visible() ? coc#pum#next(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetNext', [])<cr>" : "\<c-j>"]], expr_opts)
+keymap("i", "<s-tab>", [[coc#pum#visible() ? coc#pum#prev(1) : coc#jumpable() ? "\<c-r>=coc#rpc#request('snippetPrev', [])<cr>" : "\<c-k>"]], expr_opts)
 
 -- formatting selected code. Followed by highlighted code
 keymap("x", "<leader>f", "<Plug>(coc-format-selected)", {})
@@ -66,13 +60,10 @@ keymap("n", "K", ":lua Show_documentation() <CR>", opts)
 
 -- Commands
 -- add `:Format` command to format current buffer.
-vim.api.nvim_create_user_command("Format", ":CocCommand prettier.formatFile",
-                                 {nargs = 0})
+vim.api.nvim_create_user_command("Format", ":CocCommand prettier.formatFile", {nargs = 0})
 
 -- add `:OR` command for organize imports of the current buffer.
-vim.api.nvim_create_user_command("OI",
-                                 ":call CocActionAsync('runCommand', 'editor.action.organizeImport')",
-                                 {nargs = 0})
+vim.api.nvim_create_user_command("OI", ":call CocActionAsync('runCommand', 'editor.action.organizeImport')", {nargs = 0})
 
 -- buffer sync
 vim.api.nvim_exec(

@@ -6,6 +6,7 @@
 --  :MasonLog - opens the mason.nvim log file in a new tab window
 
 require("mason").setup({
+  PATH = "prepend",
   ui = {
     icons = {
       package_installed = "✓",
@@ -24,11 +25,11 @@ require("mason-lspconfig").setup({
     "pylsp",
     "jedi_language_server",
     "rust_analyzer",
-    "tsserver",
     "eslint",
     "dockerls",
     "bashls",
     "sqlls",
+    -- "prettier"
   },
 })
 
@@ -53,3 +54,4 @@ require("lspconfig").eslint.setup({
     }
   }
 })
+
