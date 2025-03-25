@@ -13,18 +13,13 @@ end
 
 return require('packer').startup({
     function(use)
-        use 'wbthomason/packer.nvim'
-        -- buffer bar head
-        use 'ap/vim-buftabline'
-        -- nerdtree
+        use {'wbthomason/packer.nvim'}
+        use {'ap/vim-buftabline'}
         use {'preservim/nerdtree'}
         -- coc
         -- Plug 'neoclide/coc.nvim'
         -- use {'neoclide/coc.nvim', branch = 'release'}
-        use {
-            'VonHeikemen/lsp-zero.nvim',
-            branch = 'v2.x',
-            requires = {
+        use { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
                 -- LSP Support
                 {'neovim/nvim-lspconfig'}, -- Required
                 {'williamboman/mason.nvim'}, -- Optional
@@ -83,10 +78,7 @@ return require('packer').startup({
         use 'navarasu/onedark.nvim'
         use({'projekt0n/github-nvim-theme', tag = 'v0.0.7'})
         -- lualine
-        use {
-            'nvim-lualine/lualine.nvim',
-            requires = {'kyazdani42/nvim-web-devicons', opt = true}
-        }
+        use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
         -- end
         -- theme 24 bit
         use {'jacoborus/tender.vim'}
@@ -118,20 +110,13 @@ return require('packer').startup({
                 end, {expr = true})
             end
         }
-        use {
-            'akinsho/bufferline.nvim',
-            tag = "*",
-            requires = 'nvim-tree/nvim-web-devicons'
-        }
+        use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
         --  nvim-colorizer.lua
         use 'NvChad/nvim-colorizer.lua'
-        use {
-            'mrshmllow/document-color.nvim',
-            config = function()
-                require("document-color").setup {
-                    -- Default options
+        use { 'mrshmllow/document-color.nvim', config = function()
+            require("document-color").setup {
                     mode = "background" -- "background" | "foreground" | "single"
-                }
+            }
             end
         }
         -- keyboard replace and update text

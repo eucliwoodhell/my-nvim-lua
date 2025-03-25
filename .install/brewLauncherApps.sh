@@ -36,6 +36,9 @@ brew install --cask postman
 brew tap git-chglog/git-chglog
 brew install git-chglog
 brew install btop
+brew install awscli
+brew install kubecolor
+brew install nvm
 
 # Apps
 brew install neovim
