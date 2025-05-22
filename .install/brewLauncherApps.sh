@@ -39,6 +39,7 @@ brew install btop
 brew install awscli
 brew install kubecolor
 brew install nvm
+brew install ripgrep
 
 # Apps
 brew install neovim

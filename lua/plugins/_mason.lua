@@ -17,6 +17,7 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
+  automatic_enable = false,
   automatic_installation = true,
   ensure_installed = {
     "jsonls",
