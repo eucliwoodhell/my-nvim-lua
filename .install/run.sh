@@ -16,6 +16,11 @@ declare -r REPO_URL="https://github.com/eucliwoodhell/my-nvim-lua.git"
 
 
 function main () {
+  rm -rf ~/.cache/nvim
+  rm -rf ~/.local/share/nvim/plugin
+  rm -rf ~/.local/share/nvim/lazy
+  rm -rf ~/.local/share/nvim/site/pack/packer
+
   logo
 
   check_dependencies
