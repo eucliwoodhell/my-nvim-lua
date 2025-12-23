@@ -18,5 +18,4 @@ local deleteCurrentBuffer = function()
     vim.cmd(string.format("bdelete %s", cBuf))
 end
 
-command("DeleteCurrentBuffer", deleteCurrentBuffer,
-        {desc = "Cerrando current buffer e ir al siguiente buffer"})
+command("DeleteCurrentBuffer", deleteCurrentBuffer, {desc = "Cerrando current buffer e ir al siguiente buffer"})
