@@ -36,7 +36,7 @@ return {
                             settings = {
                                 ['rust-analyzer'] = {
                                     cargo = {allFeatures = true},
-                                    checkOnSave = {command = "clippy"},
+                                    check = {command = "clippy"},
                                     diagnostics = {enable = true}
                                 }
                             }
