@@ -16,17 +16,28 @@ return require('packer').startup({
     use { 'wbthomason/packer.nvim' }
     use { 'ap/vim-buftabline' }
     use { 'preservim/nerdtree' }
-    use { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },             -- Required
-      { 'williamboman/mason.nvim' },           -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },                  -- Required
-      { 'hrsh7th/cmp-nvim-lsp' },              -- Required
-      { 'L3MON4D3/LuaSnip' }                   -- Required
+    -- LSP core
+    use 'neovim/nvim-lspconfig'
+
+    -- Mason (gestor de binarios / LSP / formatters / linters)
+    use {
+      'williamboman/mason.nvim',
+      run = ':MasonUpdate' -- opcional pero recomendado
     }
-    }
+
+    -- Integración Mason ↔ nvim-lspconfig
+    use 'williamboman/mason-lspconfig.nvim'
+    use 'WhoIsSethDaniel/mason-tool-installer.nvim'
+
+    -- Autocompletado (opcional pero MUY recomendado)
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
+    use "b0o/schemastore.nvim"
+
     -- git diff
     use { "sindrets/diffview.nvim" }
     use { "mhinz/vim-signify" }
@@ -45,12 +56,12 @@ return require('packer').startup({
     use { 'hrsh7th/vim-vsnip' }
     -- telescope
     use { 'nvim-lua/plenary.nvim' }
-    use { 'nvim-telescope/telescope.nvim', tag = '0.1.4' }
+    use { 'nvim-telescope/telescope.nvim', branch = 'master' }
     use { 'nvim-telescope/telescope-file-browser.nvim' }
     -- which key
     use { 'folke/which-key.nvim' }
-    -- lspsaga
-    use { 'tami5/lspsaga.nvim' }
+    -- -- lspsaga
+    -- use { 'tami5/lspsaga.nvim' }
     -- trouble
     use { 'kyazdani42/nvim-web-devicons' }
     use {
@@ -126,18 +137,6 @@ return require('packer').startup({
       end
     })
     use { "folke/zen-mode.nvim" }
-    use {
-      "imNel/monorepo.nvim",
-      config = function()
-        require("monorepo").setup({
-          -- config
-          autoload_telescope = true
-        })
-      end,
-      dependencies = {
-        "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
-      }
-    }
     use({ "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end })
     use { "akinsho/toggleterm.nvim", tag = '*' }
     use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", opt = todo_comments }
