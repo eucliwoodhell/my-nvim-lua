@@ -34,25 +34,3 @@ require("mason-lspconfig").setup({
   },
 })
 
-require("lspconfig").eslint.setup({
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "rust",
-    "golang",
-    "react",
-  },
-  tsserver = {
-    format = { enable = false }
-  },
-  eslint = {
-    enable = true,
-    format = { enable = true },
-    codeActionsOnSave = {
-      mode = "all",
-    }
-  }
-})
-

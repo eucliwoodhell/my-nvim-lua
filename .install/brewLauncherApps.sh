@@ -40,6 +40,13 @@ brew install awscli
 brew install kubecolor
 brew install nvm
 brew install ripgrep
+brew install atuin
+brew install fzf
+brew install lsd
+brew install catimg
+brew install imagemagick
+brew install uv
+uv tool install --python 3.12 posting
 
 # Apps
 brew install neovim

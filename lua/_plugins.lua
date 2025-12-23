@@ -16,9 +16,6 @@ return require('packer').startup({
     use { 'wbthomason/packer.nvim' }
     use { 'ap/vim-buftabline' }
     use { 'preservim/nerdtree' }
-    -- coc
-    -- Plug 'neoclide/coc.nvim'
-    -- use {'neoclide/coc.nvim', branch = 'release'}
     use { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },             -- Required
@@ -44,7 +41,6 @@ return require('packer').startup({
     use { 'hrsh7th/cmp-buffer' }
     -- See hrsh7th's other plugins for more completion sources!
     -- To enable more of the features of rust-analyzer, such as inlay hints and more!
-    use { 'rust-lang-nursery/rustfmt' }
     -- Snippet engine
     use { 'hrsh7th/vim-vsnip' }
     -- telescope
@@ -155,6 +151,64 @@ return require('packer').startup({
           max_commas = 2,
         }
       end
+    }
+    use {
+      "https://gitlab.com/itaranto/plantuml.nvim",
+      tag = "*",
+      config = function()
+        require("plantuml").setup()
+      end
+    }
+    use {
+      "lewis6991/gitsigns.nvim",
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('gitsigns').setup {
+          -- Opciones básicas
+          signs      = {
+            add          = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+            change       = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+            delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+            topdelete    = { hl = 'GitSignsDelete', text = ' ̅', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+            changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+          },
+          linehl     = false,
+          signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+          numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+          word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+        }
+      end
+    }
+    use {
+      "3rd/image.nvim",
+      config = function()
+        require("image").setup({})
+      end,
+    }
+    use {
+      "3rd/diagram.nvim",
+      requires = {
+        "3rd/image.nvim",
+      },
+      config = function()
+        require("diagram").setup({
+          -- Aquí puedes poner tu configuración personalizada
+          -- o dejarlo vacío para usar los valores por defecto
+        })
+      end,
+    }
+    use {
+      "nvim-neotest/neotest",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+
+        -- Adaptadores
+        "nvim-neotest/neotest-python", -- Python
+        "rouge8/neotest-rust",     -- Rust
+        "nvim-neotest/neotest-jest", -- Jest (TS/JS)
+        "marilari88/neotest-vitest", -- Vitest (TS/JS)
+      }
     }
     --[[ use {
       'mfussenegger/nvim-dap',
