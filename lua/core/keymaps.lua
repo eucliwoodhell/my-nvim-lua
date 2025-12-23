@@ -27,7 +27,6 @@ keymap('', '<Space>', '<Nop>', opt)
 keymap("n", "<C-s>", ":w<CR>", silent)
 keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 keymap("n", "<leader>Q", ":q!<CR>", silent)
-keymap("n", "<leader>Fm", ":Format<CR>", set_opts({ desc = "Format current buffer" }))
 keymap("n", "<leader>m", ":bnext<CR>", silent)
 keymap("n", "<leader>z", ":bprevious<CR>", silent)
 keymap("n", "<leader>q", ":bdelete<CR>", silent)
@@ -76,3 +75,7 @@ keymap('n', '<leader>gm', ':GitMessenger<CR>', silent)
 
 -- toggleterm
 keymap('n', '<leader>at', ':ToggleTerm direction=float<CR>', set_opts({ desc = "Terminal float" }))
+
+vim.keymap.set("n", "<leader>FT", function()
+  vim.lsp.buf.format()
+end, { noremap = true, silent = true, desc = "Format test" })
