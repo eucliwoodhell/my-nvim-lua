@@ -1,4 +1,3 @@
--- lua/plugins/toggleterm.lua
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -20,7 +19,6 @@ return {
         buf_map(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
       end
 
-      -- Autocmd para aplicar keymaps en terminales de toggleterm
       vim.cmd([[
         augroup ToggleTermKeymaps
           autocmd!
@@ -29,35 +27,34 @@ return {
       ]])
 
       require("toggleterm").setup({
-        -- size puede ser número o función
+        -- tamaños fijos para horizontal / vertical
         size = function(term)
           if term.direction == "horizontal" then
-            return 15
+            return 10    -- alto fijo (líneas)
           elseif term.direction == "vertical" then
-            return math.floor(vim.o.columns * 0.4)
+            return 40    -- ancho fijo (columnas)
           end
+          return 20
         end,
         open_mapping = [[<F12>]],
-        on_open = function(_term) end,
-        on_close = function(_term) end,
+        direction = "float", -- horizontal | vertical | window | float
+        start_in_insert = true,
+        insert_mappings = true,
+        persist_size = true,
+        close_on_exit = true,
+        shell = vim.o.shell,
+        shade_filetypes = {},
+        shade_terminals = false,
+        shading_factor = 1,
         highlights = {
           Normal = { link = "Normal" },
           NormalFloat = { link = "Normal" },
           FloatBorder = { link = "FloatBorder" },
         },
-        shade_filetypes = {},
-        shade_terminals = false,
-        shading_factor = 1,
-        start_in_insert = true,
-        insert_mappings = true,
-        persist_size = true,
-        direction = "horizontal", -- 'horizontal' | 'vertical' | 'window' | 'float'
-        close_on_exit = true,
-        shell = vim.o.shell,
         float_opts = {
-          border = "curved", -- single/double/shadow/curved
-          width = math.floor(0.7 * vim.fn.winwidth(0)),
-          height = math.floor(0.8 * vim.fn.winheight(0)),
+          border = "curved",
+          width = 150,   -- ancho fijo
+          height = 40,   -- alto fijo
           winblend = 4,
         },
         winbar = { enabled = true },
