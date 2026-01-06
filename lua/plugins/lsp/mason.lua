@@ -6,7 +6,7 @@ return {
             ensure_installed = {
                 "ts_ls", "html", "cssls", "tailwindcss", "lua_ls", "graphql",
                 "emmet_ls", "pyright", "eslint", "dockerls", "bashls", "sqlls",
-                "rust_analyzer", "jsonls"
+                "rust_analyzer", "jsonls", "gitlab_ci_ls"
             }
         },
         dependencies = {
@@ -222,6 +222,10 @@ return {
                                 }
                             }
                         })
+                    end,
+
+                    ["gitlab_ci_ls"] = function()
+                        require("lspconfig").gitlab_ci_ls.setup({})
                     end
                 }
             })
