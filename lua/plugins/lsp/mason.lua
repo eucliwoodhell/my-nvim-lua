@@ -34,7 +34,7 @@ return {
                     ["rust_analyzer"] = function()
                         require("lspconfig").rust_analyzer.setup({
                             settings = {
-                                ['rust-analyzer'] = {
+                                ["rust-analyzer"] = {
                                     cargo = {allFeatures = true},
                                     check = {command = "clippy"},
                                     diagnostics = {enable = true}
@@ -61,15 +61,9 @@ return {
                         require("lspconfig").lua_ls.setup({
                             settings = {
                                 Lua = {
-                                    format = {
-                                        enable = true,
-                                    },
-                                    diagnostics = {
-                                        globals = { "vim" },
-                                    },
-                                    workspace = {
-                                        checkThirdParty = false
-                                    },
+                                    format = {enable = true},
+                                    diagnostics = {globals = {"vim"}},
+                                    workspace = {checkThirdParty = false},
                                     telemetry = {enable = false}
                                 }
                             }
@@ -143,20 +137,27 @@ return {
                                     analysis = {
                                         autoImportCompletions = true,
                                         typeCheckingMode = "basic", -- Puede ser "off", "basic" o "strict"
-                                        diagnosticMode = "workspace", -- Analiza todo el proyecto, no solo archivos abiertos
+                                        diagnosticMode = "workspace",
                                         useLibraryCodeForTypes = true,
-                                        autoSearchPaths = true
+                                        autoSearchPaths = true,
+
+                                        -- Desactiva los reportes molestos
+                                        -- 🔥 DESACTIVA EXPLÍCITAMENTE
+                                        reportOptionalMemberAccess = false,
+                                        reportAttributeAccessIssue = false,
+                                        reportGeneralTypeIssues = false,
+                                        reportUnknownMemberType = false,
+                                        reportUnknownVariableType = false,
+                                        reportUnknownParameterType = false
                                     }
                                 }
                             },
-                            -- Opcional: Para que reconozca mejor los entornos virtuales (venv)
                             on_init = function(client)
-                                -- Si usas venv o .venv en la raíz del proyecto, esto ayuda a detectarlo
                                 if client.config.settings then
                                     client.config.settings.python.pythonPath =
                                         vim.fn.exepath("python3")
                                 end
-                            end
+                            end,
                         })
                     end,
 
