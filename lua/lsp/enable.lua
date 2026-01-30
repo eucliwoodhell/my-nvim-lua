@@ -1,3 +1,5 @@
+local util = require("lspconfig.util")
+
 -- rust_analyzer
 vim.lsp.config.rust_analyzer = {
     filetypes = {"rust"},
@@ -6,7 +8,8 @@ vim.lsp.config.rust_analyzer = {
         ["rust-analyzer"] = {
             cargo = {allFeatures = true},
             check = {command = "clippy"},
-            diagnostics = {enable = true}
+            diagnostics = {enable = true},
+            disabled = {"too_many_arguments"}
         }
     }
 }
@@ -67,12 +70,23 @@ vim.lsp.config.tailwindcss = {
 vim.lsp.enable("tailwindcss")
 
 vim.lsp.config.eslint = {
-    cmd = {"vscode-eslint-language-server", "--stdio"},
-    settings = {workingDirectory = {mode = "auto"}},
-    on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre",
-                                    {buffer = bufnr, command = "EslintFixAll"})
-    end
+  cmd = { "vscode-eslint-language-server", "--stdio" },
+  root_dir = util.root_pattern(
+    "nx.json",
+    ".eslintrc.json",
+    ".eslintrc",
+    "package.json",
+    ".git"
+  ),
+  settings = {
+    workingDirectory = { mode = "location" }, -- en monorepos suele ir mejor que "auto"
+  },
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
 }
 vim.lsp.enable("eslint")
 
@@ -200,21 +214,21 @@ vim.lsp.config.dockerls = {
 vim.lsp.enable("dockerls")
 
 vim.lsp.config.gitlab_ci_ls = {
-  cmd = { "gitlab-ci-ls", "--stdio" },
-  filetypes = { "gitlab-ci.yml", "gitlab-ci.yaml" },
+    cmd = {"gitlab-ci-ls", "--stdio"},
+    filetypes = {"gitlab-ci.yml", "gitlab-ci.yaml"}
 }
 vim.lsp.enable("gitlab_ci_ls")
 
--- Bash 
+-- Bash
 vim.lsp.config.bashls = {
-  cmd = { "bash-language-server", "start" },
-  filetypes = { "bash", "sh", "zsh" },
-  root_markers = { ".git", vim.uv.cwd() },
-  settings = {
-    bashIde = {
-      globPattern = vim.env.GLOB_PATTERN or "*@(.sh|.inc|.bash|.command)",
-    },
-  },
+    cmd = {"bash-language-server", "start"},
+    filetypes = {"bash", "sh", "zsh"},
+    root_markers = {".git", vim.uv.cwd()},
+    settings = {
+        bashIde = {
+            globPattern = vim.env.GLOB_PATTERN or "*@(.sh|.inc|.bash|.command)"
+        }
+    }
 }
 vim.lsp.enable("bashls")
 
@@ -228,3 +242,4 @@ vim.lsp.config.cssls = {
     }
 }
 vim.lsp.enable("cssls")
+
