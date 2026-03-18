@@ -44,7 +44,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-telescope/telescope.nvim", -- Opcional: hace que el selector se vea mejor
+		"nvim-telescope/telescope.nvim",
 	},
 	opts = {
 		adapters = {
