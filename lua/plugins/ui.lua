@@ -1,24 +1,47 @@
 -- lua/plugins/ui.lua
 return {
-    -- Theme
+    -- Lualine statusline
     {
-        "jacoborus/tender.vim",
+        'nvim-lualine/lualine.nvim',
         lazy = false,
-        priority = 1000,
-        config = function() vim.cmd([[colorscheme tender]]) end
-    }, -- Airline statusline
-    {
-        "vim-airline/vim-airline",
-        lazy = false,
-        dependencies = {"vim-airline/vim-airline-themes"},
+        dependencies = {'nvim-tree/nvim-web-devicons'},
         config = function()
-            -- Configuración opcional de airline
-            -- vim.g.airline_theme = 'tender' -- o el tema que prefieras
-            -- vim.g.airline_powerline_fonts = 1
+            require('lualine').setup({
+                theme = 'auto',
+                icons_enabled = true,
+                component_separators = '',
+                section_separators = '',
+                options = {
+                    disabled_filetypes = {'undotree', 'diffview', 'neo-tree', 'lir'},
+                    always_divide_middle = true,
+                },
+                sections = {
+                    lualine_a = {'mode'},
+                    lualine_b = {'branch'},
+                    lualine_c = {'filename', 'diff', 'diagnostics'},
+                    lualine_x = {'filetype', 'encoding', 'fileformat'},
+                    lualine_y = {'progress'},
+                    lualine_z = {'location'}
+                },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = {'filename'},
+                },
+                tabline = {
+                    lualine_a = {'buffers'},
+                    lualine_b = {},
+                    lualine_c = {},
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {'tabs'}
+                },
+                extensions = {'fzf', 'quickfix'},
+            })
         end
-    }, {"vim-airline/vim-airline-themes", lazy = true},
+    },
 
-    -- Icons (aunque te recomiendo nvim-web-devicons en su lugar)
+    -- Icons
     {
         "nvim-tree/nvim-web-devicons",
         lazy = true,
