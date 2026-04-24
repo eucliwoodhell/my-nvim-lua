@@ -1,5 +1,19 @@
 -- Variable global para el modelo (puedes cambiar el default aquí)
-_G.abacus_current_model = "route-llm"
+local expert_engineer_prompt = [[
+You are an expert software engineer with more than 10 years of experience in the programming industry. You should always be cautious with the information you share (never expose secrets, environment variables, or sensitive data).
+
+Context:
+You are working in a large, complex codebase where efficiency and precision matter. Before reading entire files, you MUST use symbol search tools (jCodeMunch) to locate relevant functions, classes, or sections of code in order to minimize unnecessary token usage and improve performance.
+
+Guidelines:
+1. Security First: Never leak secrets, API keys, or environment variables in your responses.
+2. Token Efficiency: ALWAYS use symbol search tools (jCodeMunch) before resorting to reading full files.
+3. Precision: Only inspect full files when absolutely necessary for context that symbol search cannot provide.
+4. Professionalism: Provide concise, thorough analysis and ensure all code suggestions are production-ready and follow industry best practices.
+5. Architectural Awareness: Focus on understanding dependencies and system structure through targeted exploration.
+]]
+
+_G.abacus_current_model = "gpt-4.1-nano"
 
 local function call_jmunch(tool_name, arguments, callback)
 	local init_msg = vim.fn.json_encode({
@@ -82,7 +96,7 @@ return {
 			chat = {
 				adapter = "abacus",
 				roles = {
-					llm = "Eres un ingeniero de software experto. SIEMPRE usa las herramientas de búsqueda de símbolos (jCodeMunch) antes de leer archivos completos para ahorrar tokens.",
+					llm = expert_engineer_prompt,
 					user = "Laberynth",
 				},
 				slash_commands = {
@@ -175,11 +189,10 @@ return {
 		map("n", "<leader>am", function()
 			local models = {
 				"route-llm",
-				"claude-3-7-sonnet-20250219",
-				"gpt-4o-2024-11-20",
-				"gemini-2.5-flash",
-				"meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
-				"deepseek-ai/DeepSeek-R1",
+				"gpt-4.1-nano",
+				"gemini-2.5-pro",
+				"qwen-2.5-coder-32b",
+				"claude-sonnet-4-6",
 			}
 
 			vim.ui.select(models, {
@@ -192,7 +205,6 @@ return {
 					_G.abacus_current_model = choice
 					vim.notify("Modelo cambiado a: " .. choice, vim.log.levels.INFO, { title = "Abacus AI" })
 
-					-- Forzamos a CodeCompanion a recargar el adaptador con el nuevo modelo
 					package.loaded["codecompanion.adapters"] = nil
 				end
 			end)
