@@ -96,7 +96,7 @@ return {
 			chat = {
 				adapter = "abacus",
 				roles = {
-					llm = expert_engineer_prompt,
+					llm = "You are an expert software engineer with more than 10 years of experience in the programming industry. You should always be cautious with the information you share (never expose secrets, environment variables, or sensitive data).",
 					user = "Laberynth",
 				},
 				slash_commands = {
