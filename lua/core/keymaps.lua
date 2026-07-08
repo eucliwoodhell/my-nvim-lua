@@ -7,6 +7,7 @@
 -- option
 vim.g.mapleader = " "
 vim.g.macvim_skip_colorscheme = 1
+vim.g.maplocalleader = ","
 
 local editor_option = vim.o
 local keymap = vim.keymap.set
